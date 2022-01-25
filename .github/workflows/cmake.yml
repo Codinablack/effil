@@ -13,7 +13,7 @@ jobs:
       matrix:
         build-type: [Release] # Debug
         lua: ["lua 5.1"] #, "lua 5.2", "lua 5.3", "luajit 2.0"]
-        os: ["windows-latest"] #["macos-latest", "ubuntu-latest"]
+        os: ["windows-2016"] #["macos-latest", "ubuntu-latest"]
         #include:
         #  - os: macos-latest
         #    macos_build_target: 10.0
@@ -33,20 +33,20 @@ jobs:
         hererocks lua-pkg --${{ matrix.lua }} -rlatest
 
     - name: Activate Lua env (Win)
-      if: ${{ matrix.os == 'windows-latest' }}
+      if: ${{ matrix.os == 'windows-2016' }}
       run: cmd ${{github.workspace}}\lua-pkg\bin\activate
 
     - name: Activate Lua env (Unix)
-      if: ${{ matrix.os != 'windows-latest' }}
+      if: ${{ matrix.os != 'windows-2016' }}
       run: source ${{github.workspace}}/lua-pkg/bin/activate
 
     - name: Configure CMake
-      if: ${{ matrix.os == 'windows-latest' }}
+      if: ${{ matrix.os == 'windows-2016' }}
       run: |
         cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DLUA_INCLUDE_DIR="${{github.workspace}}\lua-pkg\include" -DLUA_LIBRARY="${{github.workspace}}\lua-pkg\lib\liblua51.a"
 
     - name: Configure CMake
-      if: ${{ matrix.os != 'windows-latest' }}
+      if: ${{ matrix.os != 'windows-2016' }}
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DLUA_INCLUDE_DIR="${{github.workspace}}/lua-pkg/include"
 
     - name: Build
