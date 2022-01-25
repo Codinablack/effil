@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         build-type: [Release] # Debug
-        lua: ["lua 5.1"]#, "lua 5.2", "lua 5.3", "luajit 2.0"]
+        lua: ["lua 5.1"] #, "lua 5.2", "lua 5.3", "luajit 2.0"]
         os: ["windows-latest"] #["macos-latest", "ubuntu-latest"]
         #include:
         #  - os: macos-latest
@@ -47,7 +47,7 @@ jobs:
         cmake -B ${{github.workspace}}/build \
           -DCMAKE_BUILD_TYPE=${{matrix.build-type}} \
           -DLUA_INCLUDE_DIR="${{github.workspace}}\lua-pkg\include" \
-          -DLUA_LIBRARY="${{github.workspace}}\lua-pkg\lib\lua.dll"
+          -DLUA_LIBRARY="${{github.workspace}}\lua-pkg\lib\lua51.a"
 
     - name: Configure CMake
       if: ${{ matrix.os != 'windows-latest' }}
