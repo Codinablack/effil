@@ -33,7 +33,7 @@ jobs:
         hererocks lua-pkg --${{ matrix.lua }} -rlatest
     - name: Activate Lua env (Win)
       if: ${{ matrix.os == 'windows-latest' }}
-      run: call ${{github.workspace}}\lua-pkg\bin\activate
+      run: cmd ${{github.workspace}}\lua-pkg\bin\activate
     - name: Activate Lua env (Unix)
       if: ${{ matrix.os != 'windows-latest' }}
       run: source ${{github.workspace}}/lua-pkg/bin/activate
