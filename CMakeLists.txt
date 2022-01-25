@@ -41,7 +41,7 @@ FILE(GLOB SOURCES src/cpp/*.cpp src/cpp/*.h)
 FILE(GLOB LUA_SOURCES src/lua/*.lua)
 
 add_library(effil SHARED ${SOURCES})
-if (WIN32)
+if (WIN32 OR WIN64)
     target_link_libraries(effil ${LUA_LIBRARY})
     set_target_properties(effil PROPERTIES
         PREFIX ""
