@@ -43,7 +43,7 @@ jobs:
     - name: Configure CMake
       if: ${{ matrix.os == 'windows-2016' }}
       run: |
-        dir ${{github.workspace}}\lua-pkg
+        dir ${{github.workspace}}\lua-pkg\lib
         cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DLUA_INCLUDE_DIR="${{github.workspace}}\lua-pkg\include" -DLUA_LIBRARY="${{github.workspace}}\lua-pkg\lib\liblua51.a"
 
     - name: Configure CMake
